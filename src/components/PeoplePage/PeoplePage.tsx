@@ -115,6 +115,7 @@ export const PeoplePage = () => {
           <div className="box table-container">
             {showLoader && <Loader />}
 
+            
             {showError && (
               <p data-cy="peopleLoadingError" className="has-text-danger">
                 Something went wrong
