@@ -40,7 +40,7 @@ export function filterPeople(
   people: Person[],
   searchParams: URLSearchParams,
 ): Person[] {
-  const centuryParam = searchParams.getAll('century') || [];
+  const centuryParam = searchParams.getAll('centuries') || [];
   const sexParam = searchParams.get('sex') || '';
   const queryParam = searchParams.get('query')?.toLowerCase() || '';
 

@@ -11,7 +11,7 @@ export const PeopleFilters: React.FC<Props> = ({ centuries }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const sex = searchParams.get('sex') || '';
   const query = searchParams.get('query') || '';
-  const currentCenturies = searchParams.getAll('century');
+  const currentCenturies = searchParams.getAll('centuries');
 
   function handleQueryChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchParams(
@@ -78,7 +78,7 @@ export const PeopleFilters: React.FC<Props> = ({ centuries }) => {
                   'is-info': currentCenturies.includes(century),
                 })}
                 params={{
-                  century: currentCenturies.includes(century)
+                  centuries: currentCenturies.includes(century)
                     ? currentCenturies.filter(cent => cent !== century)
                     : [...currentCenturies, century],
                 }}

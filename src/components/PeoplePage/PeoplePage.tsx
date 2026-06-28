@@ -62,23 +62,23 @@ export const PeoplePage = () => {
   }, []);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const [sortField] = useState(searchParams.get('sort'));
-  const [sortOrder] = useState(searchParams.get('order'));
 
   function handleSortField(field: Field) {
-    let newOrder = 'asc';
+    let order = searchParams.get('order');
 
-    if (field === sortField) {
-      if (sortOrder === 'asc') {
-        newOrder = 'desc';
-      } else if (sortOrder === 'desc') {
-        newOrder = '';
+    if (field === searchParams.get('sort')) {
+      if (order === 'asc') {
+        order = 'desc';
+      } else if (order === 'desc') {
+        order = null;
       }
+    } else {
+      order = 'asc';
     }
 
     const newParams = getSearchWith(searchParams, {
-      sort: newOrder ? field : null,
-      order: newOrder || null,
+      sort: order ? field : null,
+      order,
     });
 
     setSearchParams(newParams);
@@ -115,7 +115,6 @@ export const PeoplePage = () => {
           <div className="box table-container">
             {showLoader && <Loader />}
 
-            
             {showError && (
               <p data-cy="peopleLoadingError" className="has-text-danger">
                 Something went wrong
