@@ -29,6 +29,7 @@ export const PersonLink = ({ person }: { person: Person }) => {
   );
 };
 
+
 export const PeoplePage = () => {
   const [people, setPeople] = useState<Person[]>([]);
   const [isLoading, setIsLoading] = useState(true);
