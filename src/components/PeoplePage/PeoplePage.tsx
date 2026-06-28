@@ -42,6 +42,7 @@ export const PeoplePage = () => {
     const loadPeople = async () => {
       setIsError(false);
       setIsLoaded(false);
+      
 
       setTimeout(async () => {
         try {
@@ -52,6 +53,7 @@ export const PeoplePage = () => {
           if (!response.ok) {
             throw new Error('Server error');
           }
+
           const data = await response.json().catch(() => []);
 
           setPeople(Array.isArray(data) ? data : []);
