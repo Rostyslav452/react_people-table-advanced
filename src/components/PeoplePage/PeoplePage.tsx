@@ -29,7 +29,6 @@ export const PersonLink = ({ person }: { person: Person }) => {
   );
 };
 
-
 export const PeoplePage = () => {
   const [people, setPeople] = useState<Person[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -53,12 +52,9 @@ export const PeoplePage = () => {
           if (!response.ok) {
             throw new Error('Server error');
           }
-
-          const text = await response.text();
-          const data = text ? JSON.parse(text) : [];
+          const data = await response.json().catch(() => []);
 
           setPeople(Array.isArray(data) ? data : []);
-
           setIsLoaded(true);
         } catch (error) {
           setIsError(true);
