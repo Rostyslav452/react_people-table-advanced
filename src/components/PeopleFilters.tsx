@@ -92,7 +92,7 @@ export const PeopleFilters: React.FC<Props> = ({ centuries }) => {
             <SearchLink
               data-cy="centuryALL"
               className="button is-success is-outlined"
-              params={{ century: null }}
+              params={{ centuries: null }}
             >
               All
             </SearchLink>

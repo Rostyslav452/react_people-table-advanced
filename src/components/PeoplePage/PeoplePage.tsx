@@ -1,6 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Loader } from '../Loader';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import {
+  Link,
+  useLocation,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { Person } from '../../types/Person';
 import classNames from 'classnames';
 import { PeopleFilters } from '../PeopleFilters';
@@ -9,16 +14,20 @@ import { filterPeople, sortPeople } from '../../utils/peopleManager';
 
 type Field = `name` | `sex` | `born` | `died`;
 
-export const PersonLink = ({ person }: { person: Person }) => (
-  <Link
-    to={`/people/${person.slug}`}
-    className={classNames({
-      'has-text-danger': person.sex === 'f',
-    })}
-  >
-    {person.name}
-  </Link>
-);
+export const PersonLink = ({ person }: { person: Person }) => {
+  const location = useLocation();
+
+  return (
+    <Link
+      to={{ pathname: `/people/${person.slug}`, search: location.search }}
+      className={classNames({
+        'has-text-danger': person.sex === 'f',
+      })}
+    >
+      {person.name}
+    </Link>
+  );
+};
 
 export const PeoplePage = () => {
   const [people, setPeople] = useState<Person[]>([]);
